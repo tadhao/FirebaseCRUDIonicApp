@@ -4,22 +4,36 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database-deprecated';
+import { FIREBASE_CREDIENTIALS } from './firebase.credientials'
+
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
+import { ShoppingListPage } from '../pages/shopping-list/shopping-list';
+import { AddShoppingPage } from '../pages/add-shopping/add-shopping';
+import { EditShoppingPage } from '../pages/edit-shopping/edit-shopping';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    ShoppingListPage,
+    AddShoppingPage,
+    EditShoppingPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    //Initialise AngularFire with credientials from the dashboard
+    AngularFireModule.initializeApp(FIREBASE_CREDIENTIALS),
+    //Impoet the AngularFireDatabasModule to use dtabase interations
+    AngularFireDatabaseModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    ShoppingListPage,
+    AddShoppingPage,
+    EditShoppingPage
   ],
   providers: [
     StatusBar,
